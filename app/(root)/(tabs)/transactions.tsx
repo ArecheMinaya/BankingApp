@@ -12,7 +12,7 @@ import { AppDispatch, RootState } from "@/src/redux/store";
 import { colors } from "@/src/styles";
 import { Account } from "@/src/types/account";
 import BottomSheet from "@gorhom/bottom-sheet";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import React, {
   useCallback,
   useEffect,
@@ -34,6 +34,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 
 const Transactions = () => {
+  const { id } = useLocalSearchParams<{ id: string }>();
   const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
   const [accountToTransfer, setAccountToTransfer] = useState<Account | null>(
     null,
@@ -45,9 +46,16 @@ const Transactions = () => {
   );
 
   useEffect(() => {
+    const account = accountsForTransfer.accounts?.accounts.find(
+      (account) => account.id === Number(id),
+    );
+    if (account) {
+      setSelectedAccount(account);
+    }
+
     dispatch(getAccountsForTransfer());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [id]);
 
   const handleSelectAccountToTransfer = useCallback((account: Account) => {
     setAccountToTransfer(account);

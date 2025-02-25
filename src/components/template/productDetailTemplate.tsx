@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import React from "react";
 import TransactionList from "../organisms/transactionList";
 import { Share } from "lucide-react-native";
@@ -8,6 +8,7 @@ import AnimationBackgrounCard from "../organisms/animationBackgrounCard";
 import { Movement } from "@/src/types/movement";
 import { AccountInformation } from "@/src/types/accountDetail";
 import colors from "@/src/styles/colors";
+import { router } from "expo-router";
 
 const ProductDetailTemplate = ({
   handlePressMoreInfo,
@@ -31,12 +32,21 @@ const ProductDetailTemplate = ({
         <View style={styles.actionsContainer}>
           <View style={styles.buttonsContainer}>
             <LightButton
-              onViewMovements={() => {}}
+              onViewMovements={() => {
+                router.push({
+                  pathname: "/(root)/(tabs)/transactions",
+                  params: {
+                    id: accountInformation.id,
+                  },
+                });
+              }}
               iconName="Send"
               title="Transferir"
             />
             <LightButton
-              onViewMovements={() => {}}
+              onViewMovements={() => {
+                Alert.alert("Esta funcionalidad aún no está disponible.");
+              }}
               iconName="File"
               title="Estado de cuenta"
             />

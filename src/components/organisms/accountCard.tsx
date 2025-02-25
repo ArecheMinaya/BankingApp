@@ -18,7 +18,6 @@ interface AccountCardProps {
 
 const AccountCard: React.FC<AccountCardProps> = ({
   account,
-  onTransfer,
   onViewMovements,
 }) => {
   const handleCardPress = (id: string) =>
@@ -43,7 +42,14 @@ const AccountCard: React.FC<AccountCardProps> = ({
       />
       <View style={styles.actions}>
         <LightButton
-          onViewMovements={onTransfer}
+          onViewMovements={() => {
+            router.push({
+              pathname: "/(root)/(tabs)/transactions",
+              params: {
+                id: account.id,
+              },
+            });
+          }}
           iconName="Send"
           title="Transferir"
         />

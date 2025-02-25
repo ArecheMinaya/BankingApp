@@ -53,8 +53,9 @@ export default function Profile() {
       const result = await LocalAuthentication.authenticateAsync({
         promptMessage: "Autenticación biométrica",
         cancelLabel: "Cancelar",
+        disableDeviceFallback: false,
       });
-      if (!result.success) {
+      if (result.success) {
         setEnabledBiometricLogin(!biometricLogin);
         await enambelBiometricLogin();
       } else {

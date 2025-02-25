@@ -25,6 +25,12 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Permitir que la aplicación use Face ID para autenticación."
+        }
+      ],
       "expo-router",
       [
         "expo-splash-screen",
