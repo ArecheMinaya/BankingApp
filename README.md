@@ -59,5 +59,5 @@ Este es un proyecto creado con **React Native** y **Expo**. Es una aplicación d
    ```bash
     npx expo start
    ```
-## login 
+## Diseño 
 ![Image](https://github.com/user-attachments/assets/b5bcdd31-edb7-4f33-a332-37b26745f042) ![Image](https://github.com/user-attachments/assets/00010700-532f-4f99-8c65-59f73471ddbc) ![Image](https://github.com/user-attachments/assets/13f10a45-66a1-45fe-9f73-c2f866d5c9b9) ![Image](https://github.com/user-attachments/assets/4eedeb9c-1cef-45f1-8ab4-077b2cc81c79) ![Image](https://github.com/user-attachments/assets/2b47c509-a13f-4147-a337-9c71ab915356)
