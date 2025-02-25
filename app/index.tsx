@@ -19,7 +19,11 @@ import GrayTextInput from "@/src/components/atoms/grayTextInput";
 import { signInUser, signUpUser } from "@/src/redux/slices/authSlice";
 import { AppDispatch } from "@/src/redux/store";
 import * as LocalAuthentication from "expo-local-authentication";
-import { getCredentials, getEnabledBiometricLogin } from "@/src/utils/storage";
+import {
+  getCredentials,
+  getEnabledBiometricLogin,
+  storeCredentials,
+} from "@/src/utils/storage";
 import Icon from "@/src/components/atoms/icon";
 import { colors } from "@/src/styles";
 
@@ -81,12 +85,9 @@ const Auth = () => {
       cancelLabel: "Cancelar",
     });
     if (result.success) {
-      alert("Autenticación exitosa");
       const { username, password } = await getCredentials();
       if (username && password) {
-        setEmail(username);
-        setPassword(password);
-        handleSignIn();
+        await dispatch(signInUser({ email: username, password }));
       }
     } else {
       alert("Autenticación fallida");
@@ -94,7 +95,12 @@ const Auth = () => {
   };
 
   const handleSignIn = async () => {
-    await dispatch(signInUser({ email, password }));
+    const resultAction = await dispatch(signInUser({ email, password }));
+    if (signInUser.fulfilled.match(resultAction)) {
+      if (!enabledBiometricLogin) {
+        await storeCredentials(email, password, enabledBiometricLogin);
+      }
+    }
   };
 
   const handleSignUp = async () => {
