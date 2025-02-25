@@ -60,4 +60,4 @@ Este es un proyecto creado con **React Native** y **Expo**. Es una aplicación d
     npx expo start
    ```
 ## login 
-![Image](https://github.com/user-attachments/assets/b5bcdd31-edb7-4f33-a332-37b26745f042)
+![Image](https://github.com/user-attachments/assets/b5bcdd31-edb7-4f33-a332-37b26745f042) ![Image](https://github.com/user-attachments/assets/00010700-532f-4f99-8c65-59f73471ddbc)
