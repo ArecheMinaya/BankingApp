@@ -40,17 +40,23 @@
 
 Este es un proyecto creado con **React Native** y **Expo**. Es una aplicación de gestión de cuentas bancarias que permite ver el saldo, listar transacciones, transferir dinero y mucho más.
 
-## Primer Paso
+## Ejecutar el App
 
-1. Instala las dependencias
+1. Clona el proyecto
+
+   ```bash
+   git clone
+   ```
+
+2. Instala las dependencias
 
    ```bash
    npm install
    ```
 
-2. Inicia el App
+3. Inicia el App
 
    ```bash
     npx expo start
    ```
-# BankingApp
+
