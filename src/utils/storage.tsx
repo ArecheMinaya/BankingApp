@@ -30,7 +30,6 @@ export const getEnabledBiometricLogin = async () => {
 };
 
 export const enambelBiometricLogin = async () => {
-  console.log("Enabling biometric login...");
   await SecureStore.setItemAsync("enabledBiometricLogin", "true");
 };
 

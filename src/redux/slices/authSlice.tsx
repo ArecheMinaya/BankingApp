@@ -21,14 +21,10 @@ const initialState: AuthState = {
 export const signInUser = createAsyncThunk(
   "auth/signInUser",
   async ({ email, password }: { email: string; password: string }) => {
-    // email:"bayohev856@kytstore.com",
-    //   password: "qwerty123123",
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
-        // email,
-        // password,
-       email:"bayohev856@kytstore.com",
-      password: "qwerty123123",
+        email,
+        password,
       });
 
       if (error) {
@@ -47,9 +43,32 @@ export const signInUser = createAsyncThunk(
   },
 );
 
+export const signUpUser = createAsyncThunk(
+  "auth/signUpUser",
+  async ({ email, password }: { email: string; password: string }) => {
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+
+      if (error) {
+        Alert.alert("Error en el registro:", error.message);
+        return { error: error.message };
+      }
+      Alert.alert("Registro exitoso", " por favor verifique su correo");
+      return { session: data.session };
+    } catch (err) {
+      // En caso de un error inesperado, lo retornamos
+      Alert.alert("Error en el registro");
+      return { error: err };
+    }
+  },
+);
+
 export const signOutUser = createAsyncThunk("auth/signOutUser", async () => {
   const { error } = await supabase.auth.signOut();
-  router.replace("/login");
+  router.replace("/");
   return { error };
 });
 
@@ -82,6 +101,19 @@ const authSlice = createSlice({
       state.status = "loading";
     });
     builder.addCase(signOutUser.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message || "Error desconocido";
+    });
+
+    // signUpUser
+    builder.addCase(signUpUser.fulfilled, (state, action) => {
+      state.session = action.payload.session;
+      state.status = "succeeded";
+    });
+    builder.addCase(signUpUser.pending, (state) => {
+      state.status = "loading";
+    });
+    builder.addCase(signUpUser.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error.message || "Error desconocido";
     });

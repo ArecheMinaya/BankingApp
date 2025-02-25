@@ -16,7 +16,7 @@ import {
 import { useDispatch } from "react-redux";
 import AccentButton from "@/src/components/atoms/accentButton";
 import GrayTextInput from "@/src/components/atoms/grayTextInput";
-import { signInUser } from "@/src/redux/slices/authSlice";
+import { signInUser, signUpUser } from "@/src/redux/slices/authSlice";
 import { AppDispatch } from "@/src/redux/store";
 import * as LocalAuthentication from "expo-local-authentication";
 import { getCredentials, getEnabledBiometricLogin } from "@/src/utils/storage";
@@ -97,6 +97,10 @@ const Auth = () => {
     await dispatch(signInUser({ email, password }));
   };
 
+  const handleSignUp = async () => {
+    dispatch(signUpUser({ email, password }));
+  };
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -140,16 +144,18 @@ const Auth = () => {
               </Pressable>
             )}
             <AccentButton title="Entrar" onPress={handleSignIn} />
-            <Text
-              style={{
-                textAlign: "center",
-                marginVertical: 20,
-                fontSize: 18,
-                color: colors.secondaryDark,
-              }}
-            >
-              Registrar
-            </Text>
+            <Pressable onPress={handleSignUp}>
+              <Text
+                style={{
+                  textAlign: "center",
+                  marginVertical: 20,
+                  fontSize: 18,
+                  color: colors.secondaryDark,
+                }}
+              >
+                Registrar
+              </Text>
+            </Pressable>
           </Animated.View>
         </ScrollView>
       </TouchableWithoutFeedback>

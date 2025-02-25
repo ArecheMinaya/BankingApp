@@ -23,7 +23,6 @@ export const getAccountsForTransfer = createAsyncThunk(
     const response = await api.get<AccountsForTransfer>(
       "/getAccountsForTransfer",
     );
-    console.log("response", response.data);
     return response.data;
   },
 );

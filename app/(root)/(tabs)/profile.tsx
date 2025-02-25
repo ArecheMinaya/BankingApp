@@ -36,7 +36,7 @@ export default function Profile() {
       if (!response) return;
       setEnabledBiometricLogin(!biometricLogin);
       await removeCredentials();
-      router.replace("/(root)/(auth)/login");
+      router.replace("/");
     } else {
       const compatible = await LocalAuthentication.hasHardwareAsync();
       if (!compatible) {
