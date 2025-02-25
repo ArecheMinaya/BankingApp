@@ -45,7 +45,7 @@ Este es un proyecto creado con **React Native** y **Expo**. Es una aplicación d
 1. Clona el proyecto
 
    ```bash
-   git clone
+   git clone https://github.com/ArecheMinaya/BankingApp.git
    ```
 
 2. Instala las dependencias
